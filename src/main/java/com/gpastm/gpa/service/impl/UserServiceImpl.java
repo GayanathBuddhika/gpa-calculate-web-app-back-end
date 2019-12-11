@@ -24,4 +24,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
+	@Override
+	public void adduser(User user) {
+		// TODO Auto-generated method stub
+		userRepository.save(user);
+	}
+
 }
