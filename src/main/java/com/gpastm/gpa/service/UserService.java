@@ -10,4 +10,6 @@ public interface UserService {
 
 	void adduser(User user);
 
+	void deleteUser(String userId);
+
 }
