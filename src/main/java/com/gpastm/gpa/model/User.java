@@ -21,10 +21,11 @@ public class User {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int ai;
-	public String userId;
+	private String userId;
 	public String email;
 	public String role;
 	public String user_type;
 	public String firstName;
 	public String lastName;
+
 }

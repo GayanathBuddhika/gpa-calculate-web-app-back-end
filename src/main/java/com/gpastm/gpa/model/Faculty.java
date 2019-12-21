@@ -1,11 +1,13 @@
 package com.gpastm.gpa.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -14,13 +16,19 @@ import lombok.Data;
 @Entity
 @Data
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Faculty {
+public class Faculty implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	public String id= UUID.randomUUID().toString();
+	private String id= UUID.randomUUID().toString();
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int ai;
+	private int ai;
 	
-	public String name; 
+
+	private String name; 
 
 }
