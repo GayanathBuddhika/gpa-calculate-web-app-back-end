@@ -6,4 +6,6 @@ import com.gpastm.gpa.model.Student;
 
 public interface StudentRepository extends JpaRepository<Student, String> {
 
+	Student findByEpNumber(String epnumber);
+
 }

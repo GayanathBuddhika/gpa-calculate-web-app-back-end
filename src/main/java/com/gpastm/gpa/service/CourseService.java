@@ -12,4 +12,6 @@ public interface CourseService {
 
 	void deleteCourse(String courseId);
 
+	Course findCourseById(String id);
+
 }

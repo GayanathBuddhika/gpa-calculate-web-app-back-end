@@ -21,7 +21,7 @@ import com.gpastm.gpa.service.DegreeCourseService;
 
 
 @Controller
-@RequestMapping("/Course")
+@RequestMapping("/course")
 public class CourseController {
 
 	
@@ -57,5 +57,11 @@ public class CourseController {
 	public ResponseEntity<Response> deleteCourse(@PathVariable String CourseId){
 		courseService.deleteCourse(CourseId);
 	return new ResponseEntity<Response>(new Response("deleted Course"),HttpStatus.OK);
+			}
+	
+	@PostMapping("/findCourseById/{CourseId}")
+	public ResponseEntity<Course> findCourseById(@PathVariable String CourseId){
+		
+	return new ResponseEntity<Course>(courseService.findCourseById(CourseId),HttpStatus.OK);
 			}
 }

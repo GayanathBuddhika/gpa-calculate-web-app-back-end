@@ -12,4 +12,6 @@ public interface LectureService {
 
 	void deleteLectuert(String lectuerId);
 
+	Lecture findLecturebyId(String lectureId);
+
 }

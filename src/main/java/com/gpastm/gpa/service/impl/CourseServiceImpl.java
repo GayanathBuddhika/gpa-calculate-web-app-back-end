@@ -36,4 +36,10 @@ public class CourseServiceImpl implements CourseService{
 		courseReposotory.deleteById(courseId);
 	}
 
+	@Override
+	public Course findCourseById(String id) {
+		// TODO Auto-generated method stub
+		return courseReposotory.getOne(id);
+	}
+
 }

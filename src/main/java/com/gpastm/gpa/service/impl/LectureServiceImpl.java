@@ -37,4 +37,10 @@ public class LectureServiceImpl implements LectureService {
 		lectureRepository.deleteById(lectuerId);
 	}
 
+	@Override
+	public Lecture findLecturebyId(String lectureId) {
+		// TODO Auto-generated method stub
+		return lectureRepository.getOne(lectureId);
+	}
+
 }

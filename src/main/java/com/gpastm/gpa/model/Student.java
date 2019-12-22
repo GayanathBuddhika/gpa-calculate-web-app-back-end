@@ -30,6 +30,8 @@ public class Student {
     
     public String batch;
     
+    public String studentName;
+    
     @ManyToOne
 	@JoinColumn(name="department_id")
     public Department department;
