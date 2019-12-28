@@ -19,4 +19,6 @@ public interface ResultService {
 
 	List<ResultConverter> addResultBycsvFile(MultipartFile file,String examDate,String courseId)throws IOException;
 
+	List<Result> findResultByepNumber(String epNumber);
+
 }

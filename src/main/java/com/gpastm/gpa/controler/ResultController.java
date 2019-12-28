@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +19,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.model.Result;
-import com.gpastm.gpa.model.Student;
+
 import com.gpastm.gpa.service.ResultService;
-import com.gpastm.gpa.service.StudentService;
+
 
 import modelConverter.ResultConverter;
 
 @Controller
+//@CrossOrigin(origins = "http://localhost:4200")  
 @RequestMapping("/result")
 public class ResultController {
 
@@ -58,5 +60,12 @@ public class ResultController {
 			@RequestParam("courseId") String courseId)  throws IOException {
 		
 		return new ResponseEntity<List<ResultConverter>>(resultService.addResultBycsvFile(file,examDate,courseId),HttpStatus.OK);
+	}
+	
+
+	@GetMapping("/findReultByEpNum/{epNumber}")
+	public ResponseEntity<List<Result>> findResultByStudentId(@PathVariable String epNumber){
+		
+		return new ResponseEntity<List<Result>>(resultService.findResultByepNumber(epNumber), HttpStatus.OK);
 	}
 }

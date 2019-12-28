@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.transform.ResultTransformer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -88,6 +88,12 @@ public class ResultServiceImpl implements ResultService {
 	public void SaveResultList(List<Result> results) {
 		
 		reultRepository.saveAll(results).forEach(results::add);
+	}
+
+	@Override
+	public List<Result> findResultByepNumber(String epNumber) {
+		// TODO Auto-generated method stub
+		return reultRepository.findAllByStudent_EpNumber(epNumber);
 	}
 
 }

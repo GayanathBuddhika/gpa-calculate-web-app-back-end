@@ -1,18 +1,13 @@
-package com.gpastm.gpa;
+package config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@SpringBootApplication
-public class GpaApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(GpaApplication.class, args);
-	}
-	
+@Configuration
+public class WebConfig {
 	 @Bean
 	    public WebMvcConfigurer corsConfigurer() 
 	    {
@@ -23,5 +18,4 @@ public class GpaApplication {
 	            }
 	        };
 	    }
-
 }

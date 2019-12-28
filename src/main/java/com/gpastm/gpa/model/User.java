@@ -24,7 +24,7 @@ public class User {
 	private String userId;
 	public String email;
 	public String role;
-	public String user_type;
+	public String userType;
 	public String firstName;
 	public String lastName;
 
