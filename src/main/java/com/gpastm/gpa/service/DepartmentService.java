@@ -14,4 +14,8 @@ public interface DepartmentService {
 
 	Department findDepartmentById(String departmentId);
 
+	boolean findUnique(String name, String id);
+
+
+
 }

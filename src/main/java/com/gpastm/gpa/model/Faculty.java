@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,5 +30,9 @@ public class Faculty implements Serializable {
 	
 
 	private String name; 
+	
+	   // --- that edit is not property in the database table. but it not gives a error
+		@Transient
+		public boolean edit;
 
 }

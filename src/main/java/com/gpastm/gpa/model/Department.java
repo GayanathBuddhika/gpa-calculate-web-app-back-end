@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,4 +30,8 @@ public class Department {
 	@ManyToOne
 	@JoinColumn(name="faculty_id")
 	public Faculty faculty;
+	
+	 // --- that edit is not property in the database table. but it not gives a error
+	@Transient
+	public boolean edit;
 }

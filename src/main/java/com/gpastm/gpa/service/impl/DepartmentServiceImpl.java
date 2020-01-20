@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gpastm.gpa.model.Department;
+import com.gpastm.gpa.model.Faculty;
 import com.gpastm.gpa.repository.DepartmentRepository;
 import com.gpastm.gpa.service.DepartmentService;
 
@@ -40,6 +41,13 @@ public class DepartmentServiceImpl implements DepartmentService{
 	public Department findDepartmentById(String departmentId) {
 		// TODO Auto-generated method stub
 		return departmentRepository.getOne(departmentId);
+	}
+
+	@Override
+	public boolean findUnique(String name, String id) {
+		// TODO Auto-generated method stub
+		Department department = departmentRepository.findByName(name);
+		return department != null && !department.getId().equals(id);
 	}
 
 }

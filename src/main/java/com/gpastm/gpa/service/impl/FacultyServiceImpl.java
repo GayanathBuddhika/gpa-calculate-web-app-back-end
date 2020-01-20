@@ -39,4 +39,18 @@ public class FacultyServiceImpl implements FacultyService {
 		return facultyRepository.findAll();
 	}
 
+	@Override
+	public boolean findUnique(String name, String id) {
+		// TODO Auto-generated method stub
+		Faculty faculty = facultyRepository.findByName(name);
+		return faculty != null && !faculty.getId().equals(id);
+		
+	}
+
+	@Override
+	public Faculty findById(String id) {
+		// TODO Auto-generated method stub
+		return facultyRepository.getOne(id);
+	}
+
 }

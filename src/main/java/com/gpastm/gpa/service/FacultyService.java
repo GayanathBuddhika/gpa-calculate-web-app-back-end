@@ -13,6 +13,9 @@ public interface FacultyService {
 
 	List<Faculty> findAll();
 
-	
+	boolean findUnique(String name, String id);
 
+	Faculty findById(String id);
+
+	
 }
