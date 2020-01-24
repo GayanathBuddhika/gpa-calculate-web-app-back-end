@@ -16,29 +16,19 @@ import lombok.Data;
 @Entity
 @Data
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Result {
-	
+public class StudentCourse {
 	@Id
     public String id = UUID.randomUUID().toString();
     
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     public int ai;
  
-	public String result;
-	
-	public String examDate;
-	
-//	@ManyToOne
-//	@JoinColumn(name="student_id")
-//	public Student student;
-//	
-//	@ManyToOne
-//	@JoinColumn(name="course_id")
-//	public Course course;
+	@ManyToOne
+	@JoinColumn(name="student_id")
+	public Student student;
 	
 	@ManyToOne
-	@JoinColumn(name="student_course")
-	public StudentCourse studentCourse;
-	
+	@JoinColumn(name="course_id")
+	public Course course;
 
 }

@@ -14,9 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.gpastm.gpa.model.Course;
 import com.gpastm.gpa.model.Result;
 import com.gpastm.gpa.model.Student;
+import com.gpastm.gpa.model.StudentCourse;
 import com.gpastm.gpa.repository.ResultRepository;
 import com.gpastm.gpa.service.CourseService;
 import com.gpastm.gpa.service.ResultService;
+import com.gpastm.gpa.service.StudentCourseService;
 import com.gpastm.gpa.service.StudentService;
 
 import modelConverter.ResultConverter;
@@ -35,6 +37,9 @@ public class ResultServiceImpl implements ResultService {
 	@Autowired
 	CourseService courseService; 
 	
+	@Autowired
+	StudentCourseService studentCourseService; 
+	
 	@Override
 	public List<Result> findAll() {
 		// TODO Auto-generated method stub
@@ -42,12 +47,11 @@ public class ResultServiceImpl implements ResultService {
 	}
 
 	@Override
-	public void addResult(Result result,String courseId) {
+	public void addResult(Result result,String studentCourseId) {
 		// TODO Auto-generated method stub
 		
-		Course course =courseService.findCourseById(courseId);
-		
-		result.course =course;
+		StudentCourse studentCourse = studentCourseService.findStudentCourseById(studentCourseId);	 
+	    result.studentCourse=studentCourse;
 		reultRepository.save(result);
 	}
 
@@ -68,13 +72,16 @@ public class ResultServiceImpl implements ResultService {
 		
 		for(ResultConverter resultConvret : resultList ) {
 			
-			Student student = studentService.findstudentByEpnumber(resultConvret.getEpnumber());			
+			//Student student = studentService.findstudentByEpnumber(resultConvret.getEpnumber());	
+			StudentCourse studentCourse = studentCourseService.findStudentCourseByepNumberCourseId(resultConvret.getEpnumber(), courseId);
 			
 		        Result result = new Result();
 				result.result = resultConvret.getResult();
-				result.student = student;
-				result.course = course;
+//				result.student = student;
+//				result.course = course;
+				result.studentCourse = studentCourse;
 				result.examDate =examDate;
+				
 				results.add(result);
 					
 		}

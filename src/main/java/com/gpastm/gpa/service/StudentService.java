@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gpastm.gpa.model.Student;
+import com.gpastm.gpa.model.StudentCourse;
 
 public interface StudentService {
 
@@ -18,6 +19,8 @@ public interface StudentService {
 	List<Student> addstudentBycsvFile(MultipartFile file, String departmentId) throws IOException;
 
 	Student findstudentByEpnumber(String epnumber);
+
+
 
 
 }

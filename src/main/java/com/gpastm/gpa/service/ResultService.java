@@ -13,7 +13,7 @@ public interface ResultService {
 
 	List<Result> findAll();
 
-	void addResult(Result result,String courseId);
+	void addResult(Result result,String studentCourseId);
 
 	void deleteResult(String resultId);
 
