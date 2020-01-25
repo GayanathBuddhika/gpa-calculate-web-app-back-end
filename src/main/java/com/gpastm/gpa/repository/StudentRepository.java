@@ -8,4 +8,6 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
 	Student findByEpNumber(String epnumber);
 
+	Student findByStudentName(String studentName);
+
 }

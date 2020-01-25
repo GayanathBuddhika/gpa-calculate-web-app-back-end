@@ -66,32 +66,4 @@ public class DepartmentController {
 }
 
 
-//@PostMapping("/addFaculty")
-//public ResponseEntity<Map<String, Object>> addUser(@RequestBody Faculty faculty){
-//	Map<String, Object> map = new HashMap<>();
-//	if(faculty.edit) {
-//		if(facultyService.findUnique(faculty.getName(),faculty.getId())) {
-//			throw new NotAcceptableStatusException("company is exsit");
-//		}else {
-//			Faculty editFaculty = facultyService.findById(faculty.getId());
-//			faculty.setAi(editFaculty.getAi());
-//			map.put("action", new String("saved"));
-//			map.put("faculty", faculty);		
-//			facultyService.addFaculty(faculty);
-//			return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
-//		}
-//	}else {
-//		
-//		map.put("action", new String("saved"));
-//		map.put("faculty", faculty);		
-//		facultyService.addFaculty(faculty);
-//    	return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
-//	}
-//	
-//}
-//
-//@PostMapping("/deleteFaculty/{facultyId}")
-//public ResponseEntity<Response> deleteUser(@PathVariable String facultyId){
-//	facultyService.deletefaculty(facultyId);
-//return new ResponseEntity<Response>(new Response("deleted faculty"),HttpStatus.OK);
-//		}
+

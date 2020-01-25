@@ -35,9 +35,9 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void addCourse(Student student) {
+	public Student addStudent(Student student) {
 		// TODO Auto-generated method stub
-		studentRepository.save(student);
+		return studentRepository.save(student);
 	}
 
 	@Override
@@ -77,6 +77,26 @@ public class StudentServiceImpl implements StudentService {
 	public Student findstudentByEpnumber(String epnumber) {
 		// TODO Auto-generated method stub
 		return studentRepository.findByEpNumber(epnumber);
+	}
+
+	@Override
+	public boolean findExsit(String epNumber) {
+		// TODO Auto-generated method stub
+		Student student = studentRepository.findByEpNumber(epNumber);
+		return student != null;
+	}
+
+	@Override
+	public boolean findUnique(String studentName, String id) {
+		// TODO Auto-generated method stub
+		Student student = studentRepository.findByStudentName(studentName);
+		return student !=null && student.id.equals(id);
+	}
+
+	@Override
+	public Student findByid(String id) {
+		// TODO Auto-generated method stub
+		return studentRepository.getOne(id);
 	}
 
 }

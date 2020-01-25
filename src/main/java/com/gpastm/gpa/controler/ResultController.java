@@ -40,7 +40,7 @@ public class ResultController {
 
 	
 	@PostMapping("/addResult")
-    public ResponseEntity<Response> addResult(@RequestBody Result result, @RequestParam("studentCourseId") String courseId){
+    public ResponseEntity<Response> addResult(@RequestBody Result result, @RequestParam("studentCourseId") String studentCourseId){
 		resultService.addResult(result, studentCourseId);
 		
     	return new ResponseEntity<Response>(new Response("add Result") , HttpStatus.OK);

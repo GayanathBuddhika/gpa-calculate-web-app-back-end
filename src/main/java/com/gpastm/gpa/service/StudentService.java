@@ -12,13 +12,19 @@ public interface StudentService {
 
 	List<Student> findAll();
 
-	void addCourse(Student student);
+	Student addStudent(Student student);
 
 	void deleteStudent(String studentId);
 
 	List<Student> addstudentBycsvFile(MultipartFile file, String departmentId) throws IOException;
 
 	Student findstudentByEpnumber(String epnumber);
+
+	boolean findExsit(String epNumber);
+
+	boolean findUnique(String studentName, String id);
+
+	Student findByid(String id);
 
 
 

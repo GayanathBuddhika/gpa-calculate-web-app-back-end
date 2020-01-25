@@ -8,6 +8,6 @@ import com.gpastm.gpa.model.Result;
 
 public interface ResultRepository extends JpaRepository<Result, String>{
 
-	List<Result> findAllByStudent_EpNumber(String epNumber);
+	//List<Result> findAllByStudent_EpNumber(String epNumber);
 
 }

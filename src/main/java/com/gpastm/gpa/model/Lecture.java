@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -26,4 +29,10 @@ public class Lecture {
 	
 	public String name;
 	
+	@ManyToOne
+	@JoinColumn(name="department_id")
+	public Department department;
+	
+	@Transient
+	public boolean edit;
 }
