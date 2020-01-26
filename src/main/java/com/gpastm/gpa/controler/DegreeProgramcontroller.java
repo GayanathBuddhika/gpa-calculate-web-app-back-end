@@ -45,14 +45,14 @@ public class DegreeProgramcontroller {
 			degreeProgram.setAi(editDegreeProgram.getAi());
 			DegreeProgram degreeProgramSaved = degreeProgramService.addDegreeProgram(degreeProgram);
 			map.put("action", new String("saved"));
-			map.put("faculty", degreeProgramSaved);		
+			map.put("degreeProgram", degreeProgramSaved);		
 			
 			return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
 		}
 	}else {
 		DegreeProgram degreeProgramSaved2 = degreeProgramService.addDegreeProgram(degreeProgram);
 		map.put("action", new String("saved"));
-		map.put("faculty", degreeProgramSaved2);		
+		map.put("degreeProgram", degreeProgramSaved2);		
 		return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
 	}
 		//return new ResponseEntity<Response>(new Response("add Department") , HttpStatus.OK);
