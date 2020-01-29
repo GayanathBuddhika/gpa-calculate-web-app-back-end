@@ -32,24 +32,29 @@ public class DegreeCourseServiceImpl implements DegreeCourseService {
 	DegreeProgramService degreeProgramService;
 
 	@Override
-	public void addDegreeCourse(String id, String degreeProgramId, String lectureId) {
+	public void addDegreeCourseLecture(DegreeCourse degreeCourse) {
 		// TODO Auto-generated method stub
-		
-		Course course = courseService.findCourseById(id);
-		DegreeProgram degreeProgram = degreeProgramService.findDegreeProgramById(degreeProgramId); 
-		Lecture lecture = lectureService.findLecturebyId(lectureId);
-		
-		DegreeCourse degreecourse = new DegreeCourse();
-		
-		degreecourse.course = course;
-		degreecourse.degreeProgram = degreeProgram;
-		degreecourse.lecture = lecture;
-		
-		
-		degreeCourseRepository.save(degreecourse);
-		
-		
-		
+		degreeCourseRepository.save(degreeCourse);
 	}
+
+//	public void addDegreeCourse(String id, String degreeProgramId, String lectureId) {
+//		// TODO Auto-generated method stub
+//		
+//		Course course = courseService.findCourseById(id);
+//		DegreeProgram degreeProgram = degreeProgramService.findDegreeProgramById(degreeProgramId); 
+//		Lecture lecture = lectureService.findLecturebyId(lectureId);
+//		
+//		DegreeCourse degreecourse = new DegreeCourse();
+//		
+//		degreecourse.course = course;
+//		degreecourse.degreeProgram = degreeProgram;
+//		degreecourse.lecture = lecture;
+//		
+//		
+//		degreeCourseRepository.save(degreecourse);
+//		
+//		
+//		
+//	}
 
 }

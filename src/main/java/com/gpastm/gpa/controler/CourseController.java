@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.NotAcceptableStatusException;
 
 import com.gpastm.gpa.model.Course;
-
+import com.gpastm.gpa.model.DegreeCourse;
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.service.CourseService;
 import com.gpastm.gpa.service.DegreeCourseService;
@@ -32,6 +32,7 @@ public class CourseController {
 	
 	@Autowired
 	CourseService courseService; 
+	
 	
 	@Autowired
 	DegreeCourseService degreeCourseService;
@@ -60,14 +61,22 @@ public class CourseController {
 	@PostMapping("/addCourse")
     public  ResponseEntity<Map<String, Object>> addCourse(
   		@RequestBody DegreeLectureCourse degreeLectureCourse){
-		Map<String, Object> map = new HashMap<>();
-
+		Map<String, Object> mapCourse = new HashMap<>();
+       
+		mapCourse = addcourse(degreeLectureCourse.getCourse());
+		
+		DegreeCourse degreeCourse = new DegreeCourse();
+		degreeCourse.setDegreeProgram(degreeLectureCourse.getDegree());
+		degreeCourse.setLecture(degreeLectureCourse.getLectuer());
+		degreeCourse.setCourse((Course)mapCourse.get("course"));
+		
+		degreeCourseService.addDegreeCourseLecture(degreeCourse);
 		
 //		courseService.addCourse(course);
 //		degreeCourseService.addDegreeCourse(course.id,degreeProgramId,lectureId );
 		
 		
-  	return new  ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+  	return new  ResponseEntity<Map<String, Object>>(mapCourse, HttpStatus.OK);
   }
 	
 	
