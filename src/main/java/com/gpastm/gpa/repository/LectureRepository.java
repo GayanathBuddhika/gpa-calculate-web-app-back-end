@@ -6,4 +6,6 @@ import com.gpastm.gpa.model.Lecture;
 
 public interface LectureRepository extends JpaRepository<Lecture, String> {
 
+	Lecture findByName(String name);
+
 }

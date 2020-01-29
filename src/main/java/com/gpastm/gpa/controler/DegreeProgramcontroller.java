@@ -55,7 +55,7 @@ public class DegreeProgramcontroller {
 		map.put("degreeProgram", degreeProgramSaved2);		
 		return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
 	}
-		//return new ResponseEntity<Response>(new Response("add Department") , HttpStatus.OK);
+		
 	}
 	
 	
@@ -69,43 +69,3 @@ public class DegreeProgramcontroller {
 }
 
 
-//@Autowired
-//DepartmentService departmentService; 
-//
-//@GetMapping("/findAllDepartment")
-//public ResponseEntity<List<Department>> findAllDepartment(){
-//	return new ResponseEntity<List<Department>>(departmentService.findAll(), HttpStatus.OK);
-//}
-//
-//
-//@PostMapping("/addDepartment")
-//public ResponseEntity<Map<String, Object>> addDepartment(@RequestBody Department department){
-//	Map<String, Object> map = new HashMap<>();
-//	departmentService.addDepartment(department);
-//	if(department.edit) {
-//	if(departmentService.findUnique(department.getName(),department.getId())) {
-//		throw new NotAcceptableStatusException("company is exsit");
-//	}else {
-//		Department editdepartment = departmentService.findDepartmentById(department.getId());
-//		department.setAi(editdepartment.getAi());
-//		map.put("action", new String("saved"));
-//		map.put("faculty", department);		
-//		departmentService.addDepartment(department);
-//		return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
-//	}
-//}else {
-//	
-//	map.put("action", new String("saved"));
-//	map.put("faculty", department);		
-//	departmentService.addDepartment(department);
-//	return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
-//}
-//	//return new ResponseEntity<Response>(new Response("add Department") , HttpStatus.OK);
-//}
-//
-//@PostMapping("/deleteDepartment/{departmentId}")
-//public ResponseEntity<Response> deleteDepartment(@PathVariable String departmentId){
-//	departmentService.deleteDepartment(departmentId);
-//return new ResponseEntity<Response>(new Response("deleted department"),HttpStatus.OK);
-//		}
-//}

@@ -1,6 +1,8 @@
 package com.gpastm.gpa.controler;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.NotAcceptableStatusException;
 
 import com.gpastm.gpa.model.Course;
 
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.service.CourseService;
 import com.gpastm.gpa.service.DegreeCourseService;
+
+import modelConverter.DegreeLectureCourse;
 
 
 @Controller
@@ -37,21 +42,59 @@ public class CourseController {
 	}
 
 	
+//	@PostMapping("/addCourse")
+//    public ResponseEntity<Response> addCourse(
+//    		@RequestBody Course course,
+//    		@RequestParam("degreeProgramId") String degreeProgramId,
+//    		@RequestParam("lecturId") String lectureId){
+//		
+//		
+//		courseService.addCourse(course);
+//		degreeCourseService.addDegreeCourse(course.id,degreeProgramId,lectureId );
+//		
+//		
+//    	return new ResponseEntity<Response>(new Response("add Course") , HttpStatus.OK);
+//    }
+//	
+	
 	@PostMapping("/addCourse")
-    public ResponseEntity<Response> addCourse(
-    		@RequestBody Course course,
-    		@RequestParam("degreeProgramId") String degreeProgramId,
-    		@RequestParam("lecturId") String lectureId){
+  public  ResponseEntity<Map<String, Object>> addCourse(
+  		@RequestBody DegreeLectureCourse degreeLectureCourse){
+		Map<String, Object> map = new HashMap<>();
+
+		
+//		courseService.addCourse(course);
+//		degreeCourseService.addDegreeCourse(course.id,degreeProgramId,lectureId );
 		
 		
-		courseService.addCourse(course);
-		degreeCourseService.addDegreeCourse(course.id,degreeProgramId,lectureId );
-		
-		
-    	return new ResponseEntity<Response>(new Response("add Course") , HttpStatus.OK);
-    }
+  	return new  ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+  }
 	
 	
+
+//	public ResponseEntity<Map<String, Object>> addcourse(Course course){
+//		Map<String, Object> map = new HashMap<>();
+//		
+//		if(course.edit) {
+//		if(course.findUnique(course.getName(),course.getId())) {
+//			throw new NotAcceptableStatusException("DegreeProgram is exsit");
+//		}else {
+//			DegreeProgram editDegreeProgram = degreeProgramService.findDegreeProgramById(degreeProgram.getId());
+//			degreeProgram.setAi(editDegreeProgram.getAi());
+//			DegreeProgram degreeProgramSaved = degreeProgramService.addDegreeProgram(degreeProgram);
+//			map.put("action", new String("saved"));
+//			map.put("degreeProgram", degreeProgramSaved);		
+//			
+//			return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
+//		}
+//	}else {
+//		DegreeProgram degreeProgramSaved2 = degreeProgramService.addDegreeProgram(degreeProgram);
+//		map.put("action", new String("saved"));
+//		map.put("degreeProgram", degreeProgramSaved2);		
+//		return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
+//	}
+		
+//	}
 	
 	@PostMapping("/deleteCourse/{CourseId}")
 	public ResponseEntity<Response> deleteCourse(@PathVariable String CourseId){

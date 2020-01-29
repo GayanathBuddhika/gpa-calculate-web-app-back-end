@@ -8,10 +8,12 @@ public interface LectureService {
 
 	List<Lecture> findAll();
 
-	void addLectuert(Lecture lecture);
+	Lecture addLectuert(Lecture lecture);
 
 	void deleteLectuert(String lectuerId);
 
 	Lecture findLecturebyId(String lectureId);
+
+	boolean findUnique(String name, String id);
 
 }
