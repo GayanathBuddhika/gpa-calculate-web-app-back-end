@@ -29,6 +29,8 @@ public class Course {
 	 
 	 @Transient
 	 public Boolean edit;
+
+
 	 
 	 
 }

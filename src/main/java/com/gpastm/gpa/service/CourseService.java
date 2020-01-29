@@ -8,10 +8,12 @@ public interface CourseService {
 
 	List<Course> findAll();
 
-	void addCourse(Course course);
+	Course addCourse(Course course);
 
 	void deleteCourse(String courseId);
 
 	Course findCourseById(String id);
+
+	boolean findUnique(String name, String id);
 
 }

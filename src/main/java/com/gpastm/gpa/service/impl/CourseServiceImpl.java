@@ -25,9 +25,9 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public void addCourse(Course course) {
+	public Course addCourse(Course course) {
 		// TODO Auto-generated method stub
-		courseReposotory.save(course);
+		return courseReposotory.save(course);
 	}
 
 	@Override
@@ -40,6 +40,13 @@ public class CourseServiceImpl implements CourseService{
 	public Course findCourseById(String id) {
 		// TODO Auto-generated method stub
 		return courseReposotory.getOne(id);
+	}
+
+	@Override
+	public boolean findUnique(String name, String id) {
+		// TODO Auto-generated method stub
+		Course course = courseReposotory.findByName(name);
+		return course != null && course.getId() == id;
 	}
 
 }
