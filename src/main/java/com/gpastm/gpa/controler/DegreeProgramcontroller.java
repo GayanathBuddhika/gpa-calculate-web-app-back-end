@@ -33,6 +33,11 @@ public class DegreeProgramcontroller {
 		return new ResponseEntity<List<DegreeProgram>>(degreeProgramService.findAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/findAllDegreeProgramByDepId/{depId}")
+	public ResponseEntity<List<DegreeProgram>> findAllDegreeProgramByDepId(@PathVariable String depId){
+		return new ResponseEntity<List<DegreeProgram>>(degreeProgramService.findByDepartmentId(depId), HttpStatus.OK);
+	}
+	
 	@PostMapping("/addDegreeProgram")
 	public ResponseEntity<Map<String, Object>> addDegreeProram(@RequestBody DegreeProgram degreeProgram){
 		Map<String, Object> map = new HashMap<>();

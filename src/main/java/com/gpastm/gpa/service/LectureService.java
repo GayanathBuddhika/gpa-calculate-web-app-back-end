@@ -16,4 +16,6 @@ public interface LectureService {
 
 	boolean findUnique(String name, String id);
 
+	List<Lecture> DindLectuerByDepId(String lectureId);
+
 }

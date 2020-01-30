@@ -50,4 +50,10 @@ public class LectureServiceImpl implements LectureService {
 		return lecture != null && !lecture.getId().equals(id);
 	}
 
+	@Override
+	public List<Lecture> DindLectuerByDepId(String lectureId) {
+		// TODO Auto-generated method stub
+		return lectureRepository.findByDepartment_id(lectureId);
+	}
+
 }

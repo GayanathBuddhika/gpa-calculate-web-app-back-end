@@ -51,4 +51,10 @@ public class DegreeProgramServiceImpl implements DegreeProgramService{
 		degreeProgramRepository.deleteById(degreeProgramId);
 	}
 
+	@Override
+	public List<DegreeProgram> findByDepartmentId(String depId) {
+		// TODO Auto-generated method stub
+		return degreeProgramRepository.findByDepartment_id(depId);
+	}
+
 }

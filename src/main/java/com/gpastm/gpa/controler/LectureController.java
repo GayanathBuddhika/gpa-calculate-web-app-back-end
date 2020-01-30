@@ -32,6 +32,11 @@ public class LectureController {
 	public ResponseEntity<List<Lecture>> findAllLecture(){
 		return new ResponseEntity<List<Lecture>>(lectureService.findAll(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/findAllLectureByDepId/{lectureId}")
+	public ResponseEntity<List<Lecture>> findAllLectureByDepId(@PathVariable String lectureId){
+		return new ResponseEntity<List<Lecture>>(lectureService.DindLectuerByDepId(lectureId), HttpStatus.OK);
+	}
 
 	
 	@PostMapping("/addLectuer")

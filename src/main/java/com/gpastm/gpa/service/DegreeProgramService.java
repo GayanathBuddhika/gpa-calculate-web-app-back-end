@@ -17,4 +17,6 @@ public interface DegreeProgramService {
 
 	void deleteDegreeProgram(String degreeProgramId);
 
+	List<DegreeProgram> findByDepartmentId(String depId);
+
 }
