@@ -99,4 +99,10 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.getOne(id);
 	}
 
+	@Override
+	public List<Student> findAllByDepartmentId(String depId) {
+		// TODO Auto-generated method stub
+		return studentRepository.findByDepartment_id(depId);
+	}
+
 }

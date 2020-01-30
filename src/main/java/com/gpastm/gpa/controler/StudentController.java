@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.NotAcceptableStatusException;
 
+import com.gpastm.gpa.model.Course;
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.model.Student;
-
+import com.gpastm.gpa.model.StudentCourse;
+import com.gpastm.gpa.service.CourseService;
+import com.gpastm.gpa.service.StudentCourseService;
 import com.gpastm.gpa.service.StudentService;
 
 @Controller
@@ -29,6 +32,11 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService; 
+	@Autowired
+	CourseService courseService; 
+	
+	@Autowired
+	StudentCourseService studentCourseService; 
 	
 	@GetMapping("/findAllstudent")
 	public ResponseEntity<List<Student>> findAllStudent(){
@@ -86,4 +94,32 @@ public class StudentController {
 		
 		return new ResponseEntity<List<Student>>(studentService.addstudentBycsvFile(file,departmentId),HttpStatus.OK);
 	}
+	
+	@PostMapping("/assingStudentToCourse")
+	public ResponseEntity<Response> assingStudent(
+			@RequestParam("StudentId") String studentId,
+			@RequestParam("courseId") String courseId
+			){
+		Student student = studentService.findByid(studentId);
+		Course course = courseService.findCourseById(courseId);
+		StudentCourse studentCourse = new StudentCourse();
+		studentCourse.setCourse(course);
+		studentCourse.setStudent(student);
+		studentCourseService.saveStudentCourse(studentCourse);
+	return new ResponseEntity<Response>(new Response("assing Student to Course"),HttpStatus.OK);
+			}
+	
+	@PostMapping("/findcourseByStudentId/{studentId}")
+	public ResponseEntity<List<StudentCourse>> getSudentCoureByStudentId(@PathVariable String studentId){
+		;
+	return new ResponseEntity<List<StudentCourse>>(studentCourseService.findCourseByStudentId(studentId),HttpStatus.OK);
+			}
+	
+	@GetMapping("/findAllstudent/{depId}")
+	public ResponseEntity<List<Student>> findAllStudentByDepartmentId(@PathVariable String depId){
+		return new ResponseEntity<List<Student>>(studentService.findAllByDepartmentId(depId), HttpStatus.OK);
+	}
+
+
+	
 }

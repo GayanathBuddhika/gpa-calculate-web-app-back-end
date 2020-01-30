@@ -1,5 +1,7 @@
 package com.gpastm.gpa.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,18 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	public StudentCourse findStudentCourseByepNumberCourseId(String epnumber, String courseId) {
 		// TODO Auto-generated method stub
 		return studentCourseRepository.findByStudent_epNumberAndCourse_id(epnumber,courseId);
+	}
+
+	@Override
+	public void saveStudentCourse(StudentCourse studentCourse) {
+		// TODO Auto-generated method stub
+		studentCourseRepository.save(studentCourse);
+	}
+
+	@Override
+	public List<StudentCourse> findCourseByStudentId(String studentId) {
+		// TODO Auto-generated method stub
+		return studentCourseRepository.findByStudent_id(studentId);
 	}
 
 }

@@ -26,6 +26,8 @@ public interface StudentService {
 
 	Student findByid(String id);
 
+	List<Student> findAllByDepartmentId(String depId);
+
 
 
 
