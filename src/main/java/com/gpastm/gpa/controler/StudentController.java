@@ -97,15 +97,18 @@ public class StudentController {
 	
 	@PostMapping("/assingStudentToCourse")
 	public ResponseEntity<Response> assingStudent(
-			@RequestParam("StudentId") String studentId,
+			@RequestBody List<Student> students,
 			@RequestParam("courseId") String courseId
 			){
-		Student student = studentService.findByid(studentId);
-		Course course = courseService.findCourseById(courseId);
-		StudentCourse studentCourse = new StudentCourse();
-		studentCourse.setCourse(course);
-		studentCourse.setStudent(student);
-		studentCourseService.saveStudentCourse(studentCourse);
+		for(Student student1 : students) {
+			Student student = studentService.findByid(student1.getId());
+			Course course = courseService.findCourseById(courseId);
+			StudentCourse studentCourse = new StudentCourse();
+			studentCourse.setCourse(course);
+			studentCourse.setStudent(student);
+			studentCourseService.saveStudentCourse(studentCourse);
+		}
+		
 	return new ResponseEntity<Response>(new Response("assing Student to Course"),HttpStatus.OK);
 			}
 	
@@ -115,7 +118,7 @@ public class StudentController {
 	return new ResponseEntity<List<StudentCourse>>(studentCourseService.findCourseByStudentId(studentId),HttpStatus.OK);
 			}
 	
-	@GetMapping("/findAllstudent/{depId}")
+	@GetMapping("/findAllstudentByDepId/{depId}")
 	public ResponseEntity<List<Student>> findAllStudentByDepartmentId(@PathVariable String depId){
 		return new ResponseEntity<List<Student>>(studentService.findAllByDepartmentId(depId), HttpStatus.OK);
 	}

@@ -72,9 +72,7 @@ public class CourseController {
 		
 		DegreeProgram degree = degreeProgramService.findDegreeProgramById(degreeProgramId) ;
 		Lecture leture = lectureService.findLecturebyId(lectureId);
-		
-		
-		
+
 		DegreeCourse degreeCourse = new DegreeCourse();
 		degreeCourse.setDegreeProgram(degree);
 		degreeCourse.setLecture(leture);
@@ -128,8 +126,7 @@ public class CourseController {
 	
 	
 	@PostMapping("/findCourseById/{CourseId}")
-	public ResponseEntity<Course> findCourseById(@PathVariable String CourseId){
-		
+	public ResponseEntity<Course> findCourseById(@PathVariable String CourseId){		
 	return new ResponseEntity<Course>(courseService.findCourseById(CourseId),HttpStatus.OK);
 			}
 }
