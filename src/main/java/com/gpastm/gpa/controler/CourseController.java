@@ -21,10 +21,12 @@ import com.gpastm.gpa.model.DegreeCourse;
 import com.gpastm.gpa.model.DegreeProgram;
 import com.gpastm.gpa.model.Lecture;
 import com.gpastm.gpa.model.Response;
+import com.gpastm.gpa.model.User;
 import com.gpastm.gpa.service.CourseService;
 import com.gpastm.gpa.service.DegreeCourseService;
 import com.gpastm.gpa.service.DegreeProgramService;
 import com.gpastm.gpa.service.LectureService;
+import com.gpastm.gpa.service.UserService;
 
 
 
@@ -47,6 +49,9 @@ public class CourseController {
 	@Autowired
     DegreeProgramService degreeProgramService; 
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/findAllcourse")
 	public ResponseEntity<List<Course>> findAllCourse(){
 		return new ResponseEntity<List<Course>>(courseService.findAll(), HttpStatus.OK);
@@ -66,28 +71,29 @@ public class CourseController {
   		@RequestBody Course course,
   		@RequestParam("degreeProgramId") String degreeProgramId,
 		@RequestParam("lecturId") String lectureId){
-		Map<String, Object> mapCourse = new HashMap<>();
+		Map<String, Object> mapCourseDegreee = new HashMap<>();
        
-		mapCourse = addcourse(course);
+		Course csavedCourse = addcourse(course);
 		
 		DegreeProgram degree = degreeProgramService.findDegreeProgramById(degreeProgramId) ;
-		Lecture leture = lectureService.findLecturebyId(lectureId);
+		User leture = userService.findLecturebyId(lectureId);
 
 		DegreeCourse degreeCourse = new DegreeCourse();
 		degreeCourse.setDegreeProgram(degree);
-		degreeCourse.setLecture(leture);
-		degreeCourse.setCourse((Course)mapCourse.get("course"));
-		
+		degreeCourse.setUser(leture);
+		degreeCourse.setCourse(csavedCourse);		
 		degreeCourseService.addDegreeCourseLecture(degreeCourse);
 		
+		mapCourseDegreee.put("action", new String("saved") );
+		mapCourseDegreee.put("course", degreeCourse );
 
 		
-  	return new  ResponseEntity<Map<String, Object>>(mapCourse, HttpStatus.OK);
+  	return new  ResponseEntity<Map<String, Object>>(mapCourseDegreee, HttpStatus.OK);
   }
 	
 	
 
-	public Map<String, Object> addcourse(Course course){
+	public Course addcourse(Course course){
 		Map<String, Object> map = new HashMap<>();
 		
 		if(course.edit) {
@@ -97,16 +103,14 @@ public class CourseController {
 			Course editCourse = courseService.findCourseById(course.getId());
 			course.setAi(editCourse.getAi());
 			Course courseSaved = courseService.addCourse(course);
-			map.put("action", new String("saved"));
-			map.put("course", courseSaved);		
 			
-			return map;
+			
+			return courseSaved;
 		}
 	}else {
 		Course courseSaved2 = courseService.addCourse(course);
-		map.put("action", new String("saved"));
-		map.put("course", courseSaved2);		
-		return map;
+			
+		return courseSaved2;
 	}
 		
 	}

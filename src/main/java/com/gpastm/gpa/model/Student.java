@@ -35,6 +35,10 @@ public class Student {
     
     public int degreeProYear;
     
+    public String email;
+    
+    public String phoneNumber;
+    
     @ManyToOne
 	@JoinColumn(name="department_id")
     public Department department;

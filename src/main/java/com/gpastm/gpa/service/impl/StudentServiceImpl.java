@@ -90,7 +90,7 @@ public class StudentServiceImpl implements StudentService {
 	public boolean findUnique(String studentName, String id) {
 		// TODO Auto-generated method stub
 		Student student = studentRepository.findByStudentName(studentName);
-		return student !=null && student.id.equals(id);
+		return student !=null && !student.id.equals(id);
 	}
 
 	@Override

@@ -34,5 +34,5 @@ public class DegreeCourse {
 	
 	@ManyToOne
 	@JoinColumn(name="lecture_id")
-	public Lecture lecture;
+	public User user;
 }
