@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -115,15 +116,16 @@ public class CourseController {
 		
 	}
 	
-	@PostMapping("/deleteCourse/{CourseId}")
-	public ResponseEntity<Response> deleteCourse(@PathVariable String CourseId){
-		courseService.deleteCourse(CourseId);
-	return new ResponseEntity<Response>(new Response("deleted Course"),HttpStatus.OK);
-			}
-	
-	@PostMapping("/deleteDegreeCourse/{degreeCourseId}")
-	public ResponseEntity<Response> deleteDegreeCourse(@PathVariable String degreeCourseId){
+//	@PostMapping("/deleteCourse/{CourseId}")
+//	public ResponseEntity<Response> deleteCourse(@PathVariable String CourseId){
+//		courseService.deleteCourse(CourseId);
+//	return new ResponseEntity<Response>(new Response("deleted Course"),HttpStatus.OK);
+//			}
+//	
+	@DeleteMapping("/deleteDegreeCourse")
+	public ResponseEntity<Response> deleteDegreeCourse(@RequestParam("degreeCourseId") String degreeCourseId, @RequestParam("courseId") String courseId){
 		degreeCourseService.deleteDegreeCourse(degreeCourseId);
+		courseService.deleteCourse(courseId);
 	return new ResponseEntity<Response>(new Response("deleted Course"),HttpStatus.OK);
 			}
 	
