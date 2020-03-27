@@ -3,6 +3,7 @@ package com.gpastm.gpa.service;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gpastm.gpa.model.Student;
@@ -27,6 +28,8 @@ public interface StudentService {
 	Student findByid(String id);
 
 	List<Student> findAllByDepartmentId(String depId);
+
+	List<String> findAllbatch();
 
 
 

@@ -21,7 +21,7 @@ import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.model.Result;
 
 import com.gpastm.gpa.service.ResultService;
-
+import com.gpastm.gpa.service.StudentService;
 
 import modelConverter.ResultConverter;
 
@@ -32,6 +32,9 @@ public class ResultController {
 
 	@Autowired
 	ResultService resultService; 
+	
+	@Autowired
+	StudentService studentService; 
 	
 	@GetMapping("/findAllResult")
 	public ResponseEntity<List<Result>> findAllResult(){
@@ -67,5 +70,11 @@ public class ResultController {
 	public ResponseEntity<List<Result>> findResultByStudentId(@PathVariable String epNumber){
 		
 		return new ResponseEntity<List<Result>>(resultService.findResultByepNumber(epNumber), HttpStatus.OK);
+	}
+	
+	@GetMapping("/findbatch")
+	public ResponseEntity<List<String>> findBatch(){
+		System.out.println("#################333" + studentService.findAllbatch());
+		return new ResponseEntity<List<String>> (studentService.findAllbatch(), HttpStatus.OK);
 	}
 }
