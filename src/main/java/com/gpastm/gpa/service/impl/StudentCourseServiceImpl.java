@@ -42,4 +42,10 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 		return studentCourseRepository.findByStudent_id(studentId);
 	}
 
+	@Override
+	public List<StudentCourse> findstudents(String courseId, String batch) {
+		// TODO Auto-generated method stub
+		return studentCourseRepository.findByCourse_idAndStudent_batch(courseId,batch);
+	}
+
 }

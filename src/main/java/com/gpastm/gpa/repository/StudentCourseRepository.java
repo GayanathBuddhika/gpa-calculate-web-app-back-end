@@ -12,5 +12,7 @@ public interface StudentCourseRepository extends JpaRepository<StudentCourse, St
 
 	List<StudentCourse> findByStudent_id(String studentId);
 
+	List<StudentCourse> findByCourse_idAndStudent_batch(String courseId, String batch);
+
 
 }

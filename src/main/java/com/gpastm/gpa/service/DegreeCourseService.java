@@ -16,5 +16,7 @@ public interface DegreeCourseService {
 
 	void deleteDegreeCourse(String degreeCourseId);
 
+	List<DegreeCourse> findDegreeCourse(String courseNumber);
+
 
 }

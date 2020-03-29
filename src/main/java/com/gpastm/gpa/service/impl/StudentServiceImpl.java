@@ -108,7 +108,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<String> findAllbatch() {
 		// TODO Auto-generated method stub
-		System.out.println("############"+ studentRepository.allbatch());
+	
 		return studentRepository.allbatch();
 		//SELECT DISTINCT Country FROM Customers;
 	}

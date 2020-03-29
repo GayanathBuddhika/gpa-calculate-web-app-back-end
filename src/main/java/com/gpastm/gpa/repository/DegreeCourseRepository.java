@@ -11,4 +11,6 @@ public interface DegreeCourseRepository extends JpaRepository<DegreeCourse, Stri
 
 	List<DegreeCourse> findByDegreeProgram_department_id(String depId);
 
+	List<DegreeCourse> findByUser_id(String courseNumber);
+
 }

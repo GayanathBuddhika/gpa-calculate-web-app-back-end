@@ -53,6 +53,12 @@ public class DegreeCourseServiceImpl implements DegreeCourseService {
 		
 	}
 
+	@Override
+	public List<DegreeCourse> findDegreeCourse(String courseNumber) {
+		// TODO Auto-generated method stub
+		return degreeCourseRepository.findByUser_id(courseNumber);
+	}
+
 	
 
 //	public void addDegreeCourse(String id, String degreeProgramId, String lectureId) {

@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gpastm.gpa.model.DegreeCourse;
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.model.Result;
-
+import com.gpastm.gpa.model.StudentCourse;
+import com.gpastm.gpa.service.DegreeCourseService;
 import com.gpastm.gpa.service.ResultService;
+import com.gpastm.gpa.service.StudentCourseService;
 import com.gpastm.gpa.service.StudentService;
 
 import modelConverter.ResultConverter;
@@ -35,6 +38,12 @@ public class ResultController {
 	
 	@Autowired
 	StudentService studentService; 
+	
+	@Autowired
+	StudentCourseService studentCourseService;
+	
+	@Autowired
+	DegreeCourseService degreeCourseService;
 	
 	@GetMapping("/findAllResult")
 	public ResponseEntity<List<Result>> findAllResult(){
@@ -77,4 +86,17 @@ public class ResultController {
 		System.out.println("#################333" + studentService.findAllbatch());
 		return new ResponseEntity<List<String>> (studentService.findAllbatch(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/findcourse/{courseId}")
+	public ResponseEntity<List<DegreeCourse>> findCourse(@PathVariable String courseId){
+//		System.out.println("#################333" + studentService.findAllbatch());
+		return new ResponseEntity<List<DegreeCourse>> (degreeCourseService.findDegreeCourse(courseId), HttpStatus.OK);
+	}
+//	 parameters = parameters.set('courseId', courseId).set('batch', batch);
+	@GetMapping("/findStudent")
+	public ResponseEntity<List<StudentCourse>> findCourse( @RequestParam("courseId") String courseId , @RequestParam("batch") String batch){
+//		System.out.println("#################333" + studentService.findAllbatch());
+		return new ResponseEntity<List<StudentCourse>> (studentCourseService.findstudents(courseId,batch), HttpStatus.OK);
+	}
+	
 }

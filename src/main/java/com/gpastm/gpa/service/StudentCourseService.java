@@ -13,4 +13,6 @@ public interface StudentCourseService {
 void saveStudentCourse(StudentCourse studentCourse);
 
 List<StudentCourse> findCourseByStudentId(String studentId);
+
+List<StudentCourse> findstudents(String courseId, String batch);
 }
