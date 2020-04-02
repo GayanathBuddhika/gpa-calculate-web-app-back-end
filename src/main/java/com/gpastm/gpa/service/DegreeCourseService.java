@@ -18,5 +18,7 @@ public interface DegreeCourseService {
 
 	List<DegreeCourse> findDegreeCourse(String courseNumber);
 
+	DegreeCourse findDegreeCourseById(String degreeCourseId);
+
 
 }

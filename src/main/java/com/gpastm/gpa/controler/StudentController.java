@@ -19,10 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.NotAcceptableStatusException;
 
 import com.gpastm.gpa.model.Course;
+import com.gpastm.gpa.model.DegreeCourse;
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.model.Student;
 import com.gpastm.gpa.model.StudentCourse;
 import com.gpastm.gpa.service.CourseService;
+import com.gpastm.gpa.service.DegreeCourseService;
 import com.gpastm.gpa.service.StudentCourseService;
 import com.gpastm.gpa.service.StudentService;
 
@@ -34,6 +36,8 @@ public class StudentController {
 	StudentService studentService; 
 	@Autowired
 	CourseService courseService; 
+	@Autowired
+	DegreeCourseService degreeCourseService;
 	
 	@Autowired
 	StudentCourseService studentCourseService; 
@@ -98,13 +102,13 @@ public class StudentController {
 	@PostMapping("/assingStudentToCourse")
 	public ResponseEntity<Response> assingStudent(
 			@RequestBody List<Student> students,
-			@RequestParam("courseId") String courseId
+			@RequestParam("degreeCourseId") String degreeCourseId
 			){
 		for(Student student1 : students) {
 			Student student = studentService.findByid(student1.getId());
-			Course course = courseService.findCourseById(courseId);
+			DegreeCourse degreeCourse = degreeCourseService.findDegreeCourseById(degreeCourseId);
 			StudentCourse studentCourse = new StudentCourse();
-			studentCourse.setCourse(course);
+			studentCourse.setDegreeCourse(degreeCourse);;
 			studentCourse.setStudent(student);
 			studentCourseService.saveStudentCourse(studentCourse);
 		}
@@ -114,7 +118,7 @@ public class StudentController {
 	
 	@PostMapping("/findcourseByStudentId/{studentId}")
 	public ResponseEntity<List<StudentCourse>> getSudentCoureByStudentId(@PathVariable String studentId){
-		;
+		
 	return new ResponseEntity<List<StudentCourse>>(studentCourseService.findCourseByStudentId(studentId),HttpStatus.OK);
 			}
 	

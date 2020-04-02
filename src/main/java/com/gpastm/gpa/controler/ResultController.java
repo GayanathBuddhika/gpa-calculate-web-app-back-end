@@ -2,7 +2,10 @@
 package com.gpastm.gpa.controler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,10 +55,27 @@ public class ResultController {
 
 	
 	@PostMapping("/addResult")
-    public ResponseEntity<Response> addResult(@RequestBody Result result, @RequestParam("studentCourseId") String studentCourseId){
-		resultService.addResult(result, studentCourseId);
-		
-    	return new ResponseEntity<Response>(new Response("add Result") , HttpStatus.OK);
+    public ResponseEntity<Map<String, Object>> addResult(@RequestBody List<Result> resultList, @RequestParam("edit2") String edit){
+		Map<String, Object> map = new HashMap<>();
+		if(edit.equals("true")){
+			List<Result> editResult = new ArrayList<>();
+			for (Result result2 : resultList) {
+				Result dummyResult = resultService.findResultById(result2.getId());
+				result2.setAi(dummyResult.getAi());
+				editResult.add(result2);
+			}
+			resultService.addResultList(resultList);
+            
+			map.put("action", new String("saved"));
+			map.put("result", resultList);	
+			return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
+		}else {			
+			resultService.addResultList(resultList);			
+			map.put("action", new String("saved"));			
+			map.put("result", resultList);				
+			return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
+		}		
+
     }
 	
 	@PostMapping("/deleteResult/{ResultId}")
@@ -87,6 +107,12 @@ public class ResultController {
 		return new ResponseEntity<List<String>> (studentService.findAllbatch(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/findExamName")
+	public ResponseEntity<List<String>> findExamName(){
+		System.out.println("tttttttttt" + resultService.findAllEaxmName());
+		return new ResponseEntity<List<String>> (resultService.findAllEaxmName(), HttpStatus.OK);
+	}
+	
 	@GetMapping("/findcourse/{courseId}")
 	public ResponseEntity<List<DegreeCourse>> findCourse(@PathVariable String courseId){
 //		System.out.println("#################333" + studentService.findAllbatch());
@@ -98,5 +124,48 @@ public class ResultController {
 //		System.out.println("#################333" + studentService.findAllbatch());
 		return new ResponseEntity<List<StudentCourse>> (studentCourseService.findstudents(courseId,batch), HttpStatus.OK);
 	}
+	
+	@GetMapping("/findForLecture")
+	public ResponseEntity<List<Result>> findResultForLecture(@RequestParam("lectureId") String lectureId , @RequestParam("examName") String examName) {
+//		 String lecid ="67a5f5a9-206e-42b6-9f4f-b2686f8be8a2";
+//		 String exam = "example";
+		return new ResponseEntity<List<Result>> (resultService.findresultForLecture(lectureId,examName), HttpStatus.OK);
+	}
+	
+	@PostMapping("/lecAppreoved")
+    public void lectureApproved(@RequestBody List<Result> resultList){	
+		List<Result> resultListForSave= new ArrayList<>();
+		for (Result result : resultList) {
+			Result re = resultService.findResultById(result.getId());
+		    re.setLecApproval(true);
+		    resultListForSave.add(re);
+		}
+		
+		resultService.addResultList(resultListForSave);;
+    }
+	@PostMapping("/hedAppreoved")
+    public void hesdApproved(@RequestBody List<Result> resultList){	
+		List<Result> resultListForSave= new ArrayList<>();
+		for (Result result : resultList) {
+			Result re = resultService.findResultById(result.getId());
+		    re.setDepHedApproval(true);
+		    resultListForSave.add(re);
+		}
+		
+		resultService.addResultList(resultListForSave);
+		
+    }
+	@PostMapping("/deenAppreoved")
+    public void deenApproved(@RequestBody List<Result> resultList){	
+		List<Result> resultListForSave= new ArrayList<>();
+		for (Result result : resultList) {
+			Result re = resultService.findResultById(result.getId());
+		    re.setDeenApproval(true);
+		    resultListForSave.add(re);
+		}
+		
+		resultService.addResultList(resultListForSave);
+    }
+	
 	
 }

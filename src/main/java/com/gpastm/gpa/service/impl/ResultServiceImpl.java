@@ -47,12 +47,14 @@ public class ResultServiceImpl implements ResultService {
 	}
 
 	@Override
-	public void addResult(Result result,String studentCourseId) {
+	public void addResultList(List<Result> resultList) {
 		// TODO Auto-generated method stub
 		
-		StudentCourse studentCourse = studentCourseService.findStudentCourseById(studentCourseId);	 
-	    result.studentCourse=studentCourse;
-		reultRepository.save(result);
+//		StudentCourse studentCourse = studentCourseService.findStudentCourseById(studentCourseId);	 
+//	    result.studentCourse=studentCourse;
+		List<Result> resultList2 = new ArrayList<>();
+		reultRepository.saveAll(resultList).forEach(resultList2::add);
+		
 	}
 
 	@Override
@@ -80,7 +82,7 @@ public class ResultServiceImpl implements ResultService {
 //				result.student = student;
 //				result.course = course;
 				result.studentCourse = studentCourse;
-				result.examDate =examDate;
+				//result.examDate =examDate;
 				
 				results.add(result);
 					
@@ -93,8 +95,8 @@ public class ResultServiceImpl implements ResultService {
 	}
 	
 	public void SaveResultList(List<Result> results) {
-		
-		reultRepository.saveAll(results).forEach(results::add);
+		List<Result> resultList2 = new ArrayList<>();
+		reultRepository.saveAll(results).forEach(resultList2::add);
 	}
 
 	@Override
@@ -102,6 +104,24 @@ public class ResultServiceImpl implements ResultService {
 		// TODO Auto-generated method stub
 		//return reultRepository.findAllByStudent_EpNumber(epNumber);
 		return null;
+	}
+
+	@Override
+	public Result findResultById(String id) {
+		// TODO Auto-generated method stub
+		return reultRepository.getOne(id);
+	}
+
+	@Override
+	public List<String> findAllEaxmName() {
+		// TODO Auto-generated method stub
+		return reultRepository.findAllExamName();
+	}
+
+	@Override
+	public List<Result> findresultForLecture(String lecid, String exam) {
+		// TODO Auto-generated method stub
+		return reultRepository.findresultForLecture(lecid,exam);
 	}
 
 }

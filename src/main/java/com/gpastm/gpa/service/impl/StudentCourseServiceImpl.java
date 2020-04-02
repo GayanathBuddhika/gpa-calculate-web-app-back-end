@@ -27,7 +27,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	@Override
 	public StudentCourse findStudentCourseByepNumberCourseId(String epnumber, String courseId) {
 		// TODO Auto-generated method stub
-		return studentCourseRepository.findByStudent_epNumberAndCourse_id(epnumber,courseId);
+		return studentCourseRepository.findByStudent_epNumberAndDegreeCourse_course_id(epnumber,courseId);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	@Override
 	public List<StudentCourse> findstudents(String courseId, String batch) {
 		// TODO Auto-generated method stub
-		return studentCourseRepository.findByCourse_idAndStudent_batch(courseId,batch);
+		return studentCourseRepository.findByDegreeCourse_course_idAndStudent_batch(courseId,batch);
 	}
 
 }

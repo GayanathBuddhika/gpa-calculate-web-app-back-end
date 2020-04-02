@@ -28,7 +28,7 @@ public class StudentCourse {
 	public Student student;
 	
 	@ManyToOne
-	@JoinColumn(name="course_id")
-	public Course course;
+	@JoinColumn(name="degree_course_id")
+	public DegreeCourse degreeCourse;
 
 }

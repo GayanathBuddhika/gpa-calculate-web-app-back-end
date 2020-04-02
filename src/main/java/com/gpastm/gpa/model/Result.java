@@ -27,8 +27,11 @@ public class Result {
  
 	public String result;
 	
-	public String examDate;
+	public String examName;
 	
+	public Boolean depHedApproval;
+	public Boolean lecApproval;
+	public Boolean deenApproval;
 //	@ManyToOne
 //	@JoinColumn(name="student_id")
 //	public Student student;
