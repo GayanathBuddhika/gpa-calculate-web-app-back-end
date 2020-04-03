@@ -16,6 +16,8 @@ public interface ResultRepository extends JpaRepository<Result, String>{
 	@Query("FROM Result r WHERE r.studentCourse.degreeCourse.user.id=:lecid AND r.examName=:exam Group By r.studentCourse.degreeCourse.course.id")
 	List<Result> findresultForLecture(@Param("lecid") String lecid,@Param("exam") String exam);
 
+	List<Result> findByStudentCourse_student_epNumber(String epNumber);
+
 	//List<Result> findAllByStudent_EpNumber(String epNumber);
 	
 //	@Query("select new com.pulsebeatv2rest.modelConverter.DptNameSurveyUuid(s.id,s.name, p.uuid, s.selectionType,s.surveyType.name) "
