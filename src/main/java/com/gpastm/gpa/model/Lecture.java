@@ -20,14 +20,17 @@ import lombok.Data;
 public class Lecture {
 
 	@Id
-	public String id = UUID.randomUUID().toString();
+	private String id = UUID.randomUUID().toString();
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int ai;
+	private int ai;
 	
-	public String registrationNumber;
+	private  String registrationNumber;
 	
-	public String name;
+	private String name;
+	private String phoneNumber;
+	private String email;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="department_id")

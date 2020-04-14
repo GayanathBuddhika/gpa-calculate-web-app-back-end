@@ -18,8 +18,9 @@ import org.springframework.web.server.NotAcceptableStatusException;
 
 import com.gpastm.gpa.model.Lecture;
 import com.gpastm.gpa.model.Response;
-
+import com.gpastm.gpa.model.User;
 import com.gpastm.gpa.service.LectureService;
+import com.gpastm.gpa.service.UserService;
 
 @Controller
 @RequestMapping("/Lecture")
@@ -27,6 +28,9 @@ public class LectureController {
 
 	@Autowired
 	LectureService lectureService; 
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/findAllLecture")
 	public ResponseEntity<List<Lecture>> findAllLecture(){
@@ -58,6 +62,18 @@ public class LectureController {
 		}
 	}else {
 		Lecture lectureSaved2 = lectureService.addLectuert(lecture);
+		User user = new User();
+		user.setDepartment(lectureSaved2.getDepartment());
+		user.setFaculty(lectureSaved2.getDepartment().getFaculty());
+		user.setName(lectureSaved2.getName());
+		user.setEmail(lectureSaved2.getEmail());
+		user.setPhoneNumber(lectureSaved2.getPhoneNumber());
+		user.setRole("LECTURE");
+		
+		User savedUser = userService.adduser(user);
+		
+		
+		
 		map.put("action", new String("saved"));
 		map.put("lecture", lectureSaved2);		
 		return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);

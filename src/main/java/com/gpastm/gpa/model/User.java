@@ -32,6 +32,10 @@ public class User {
 	private String name;	
 	private String phoneNumber;
 	
+	private String password;
+	
+	
+	
 	@ManyToOne
 	@JoinColumn(name="department_id")
 	private Department department;

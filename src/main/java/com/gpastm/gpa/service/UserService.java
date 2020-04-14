@@ -1,6 +1,7 @@
 package com.gpastm.gpa.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.gpastm.gpa.model.User;
 
@@ -10,7 +11,7 @@ public interface UserService {
 
 	List<User> findAll();
 
-	void adduser(User user);
+	User adduser(User user);
 
 	void deleteUser(String userId);
 
@@ -23,5 +24,7 @@ public interface UserService {
 	User findLecturebyId(String lectureId);
 
 	List<User> findLectureByDepId(String depId);
+	
+	Optional<User> findByEmail(String email);
 
 }

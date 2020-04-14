@@ -2,6 +2,7 @@ package com.gpastm.gpa.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -31,9 +32,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void adduser(User user) {
+	public User adduser(User user) {
 		// TODO Auto-generated method stub
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean findUnique(String email, String id) {
 		// TODO Auto-generated method stub
-		User user = userRepository.findByEmail(email);
+		User user = userRepository.findByEmail(email).get();
 		return user != null && !user.getId().equals(id);
 	}
 
@@ -73,6 +74,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		String lecture = "LECTURE";
 		return userRepository.findAllByDepartment_idAndRole(depId,lecture);
+	}
+
+	@Override
+	public Optional<User> findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findByEmail(email);
 	}
 
 

@@ -103,7 +103,8 @@ public class ResultServiceImpl implements ResultService {
 	public List<Result> findResultByepNumber(String epNumber) {
 		// TODO Auto-generated method stub
 		//return reultRepository.findAllByStudent_EpNumber(epNumber);
-		return reultRepository.findByStudentCourse_student_epNumber(epNumber);
+//		return reultRepository.findByStudentCourse_student_epNumber(epNumber);
+		return reultRepository.findByresultNumber(epNumber);
 	}
 
 	@Override

@@ -7,5 +7,6 @@ public enum Role {
 	DEPARTMENT_HEAD,
 	DEEN,
 	LECTURE,
+	STUDENT,
 
 }

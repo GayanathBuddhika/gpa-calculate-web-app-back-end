@@ -23,10 +23,12 @@ import com.gpastm.gpa.model.DegreeCourse;
 import com.gpastm.gpa.model.Response;
 import com.gpastm.gpa.model.Student;
 import com.gpastm.gpa.model.StudentCourse;
+import com.gpastm.gpa.model.User;
 import com.gpastm.gpa.service.CourseService;
 import com.gpastm.gpa.service.DegreeCourseService;
 import com.gpastm.gpa.service.StudentCourseService;
 import com.gpastm.gpa.service.StudentService;
+import com.gpastm.gpa.service.UserService;
 
 @Controller
 @RequestMapping("/student")
@@ -41,6 +43,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentCourseService studentCourseService; 
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/findAllstudent")
 	public ResponseEntity<List<Student>> findAllStudent(){
@@ -57,8 +62,7 @@ public class StudentController {
 				
 			}else {
 				
-				Student editStudent = studentService.findByid(student.id);
-				
+				Student editStudent = studentService.findByid(student.id);				
 				student.ai = editStudent.ai;
 				Student savedStudent =  studentService.addStudent(student);		
 				map.put("action", new String("saved"));
@@ -72,7 +76,19 @@ public class StudentController {
 			if(studentService.findExsit(student.epNumber)){
 				throw new NotAcceptableStatusException("that ep number is exsit");
 			}else {				
-				Student savedStudent =  studentService.addStudent(student);				
+				Student savedStudent =  studentService.addStudent(student);	
+				
+				User user = new User();
+				
+				user.setDepartment(student.getDepartment());
+				user.setFaculty(student.getDepartment().getFaculty());
+				user.setEmail(student.getEmail());
+				user.setName(student.getStudentName());
+				user.setPhoneNumber(student.getPhoneNumber());
+				user.setRole("STUDENT");
+				
+				User savedUser = userService.adduser(user); 
+				
 				map.put("action", new String("saved"));
 				map.put("student", savedStudent );				
 				return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
