@@ -93,13 +93,14 @@ public class GpaApplication {
 		@RequestMapping(value = "/register", method = RequestMethod.POST)
 		public ResponseEntity<User> firstPage(@RequestBody AuthenticationRequest request ){
 			
+			System.out.println("register user " + request.getUsername());
 			User user = userService.findByEmail(request.getUsername()).get();
 			
 			user.setPassword(request.getPassword());
 			
 			User usersaved = userService.adduser(user);
 			
-			System.out.println("register user " + usersaved.getName());
+			
 			
 			return new ResponseEntity<User>(usersaved, HttpStatus.OK);
 		}
