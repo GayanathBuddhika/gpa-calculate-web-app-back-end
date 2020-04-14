@@ -39,19 +39,19 @@ public class DepartmentController {
 		departmentService.addDepartment(department);
 		if(department.edit) {
 		if(departmentService.findUnique(department.getName(),department.getId())) {
-			throw new NotAcceptableStatusException("company is exsit");
+			throw new NotAcceptableStatusException("department is exsit");
 		}else {
 			Department editdepartment = departmentService.findDepartmentById(department.getId());
 			department.setAi(editdepartment.getAi());
 			map.put("action", new String("saved"));
-			map.put("faculty", department);		
+			map.put("department", department);		
 			departmentService.addDepartment(department);
 			return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
 		}
 	}else {
 		
 		map.put("action", new String("saved"));
-		map.put("faculty", department);		
+		map.put("department", department);		
 		departmentService.addDepartment(department);
     	return new ResponseEntity<Map<String, Object>>(map , HttpStatus.OK);
 	}
